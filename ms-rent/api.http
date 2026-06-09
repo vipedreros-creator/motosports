@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:4001
-@arriendosUrl = {{baseUrl}}/api/arriendos
+@rentsUrl = {{baseUrl}}/api/rents
 @authUrl = {{baseUrl}}/api/auth
 
 ### =========================
@@ -36,20 +36,20 @@ Authorization: Bearer TU_TOKEN_AQUI
 ### ARRIENDOS ENDPOINTS
 ### =========================
 
-### Obtener todos los arriendos
-GET {{arriendosUrl}}
+### Obtener todos los rents
+GET {{rentsUrl}}
 Authorization: Bearer TU_TOKEN_AQUI
 
 ###
 
-### Obtener arriendo por ID
-GET {{arriendosUrl}}/1
+### Obtener rent por ID
+GET {{rentsUrl}}/1
 Authorization: Bearer TU_TOKEN_AQUI
 
 ###
 
-### Crear arriendo
-POST {{arriendosUrl}}
+### Crear rent
+POST {{rentsUrl}}
 Content-Type: application/json
 Authorization: Bearer TU_TOKEN_AQUI
 
@@ -58,13 +58,13 @@ Authorization: Bearer TU_TOKEN_AQUI
   "clienteId": 1,
   "fechaInicio": "2026-05-27",
   "fechaFin": "2026-05-30",
-  "observacion": "Arriendo de prueba"
+  "observacion": "Rent de prueba"
 }
 
 ###
 
-### Actualizar arriendo
-PUT {{arriendosUrl}}/1
+### Actualizar rent
+PUT {{rentsUrl}}/1
 Content-Type: application/json
 Authorization: Bearer TU_TOKEN_AQUI
 
@@ -73,11 +73,11 @@ Authorization: Bearer TU_TOKEN_AQUI
   "clienteId": 1,
   "fechaInicio": "2026-05-27",
   "fechaFin": "2026-06-02",
-  "observacion": "Arriendo actualizado"
+  "observacion": "Rent actualizado"
 }
 
 ###
 
-### Eliminar arriendo
-DELETE {{arriendosUrl}}/1
+### Eliminar rent
+DELETE {{rentsUrl}}/1
 Authorization: Bearer TU_TOKEN_AQUI

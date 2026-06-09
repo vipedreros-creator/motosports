@@ -1,10 +1,10 @@
-package com.motosport.arriendo;
+package com.motosport.rent;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ArriendoApplicationTests {
+class RentApplicationTests {
 
 	@Test
 	void contextLoads() {

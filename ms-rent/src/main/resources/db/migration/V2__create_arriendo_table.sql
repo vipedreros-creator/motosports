@@ -1,4 +1,4 @@
-CREATE TABLE arriendo (
+CREATE TABLE rent (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     moto_id BIGINT NOT NULL,
     cliente_id BIGINT NOT NULL,
