@@ -1,9 +1,9 @@
 package com.motosport.rent.client;
 
-import com.motosport.rent.dto.MotoDto;
+import com.motosport.rent.dto.BikeDto;
 
-public interface MotoClient {
+public interface BikeClient {
 
-    MotoDto getMotoById(Long id);
-    MotoDto updateMoto(Long id, MotoDto motoDto);
+    BikeDto getBikeById(Long id);
+    BikeDto updateBike(Long id, BikeDto bikeDto);
 }

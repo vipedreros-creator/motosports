@@ -1,7 +1,7 @@
 package com.motosport.rent.client;
 
-import com.motosport.rent.dto.ClienteDto;
+import com.motosport.rent.dto.CustomerDto;
 
-public interface ClienteClient {
-    ClienteDto getClienteById(Long id);
+public interface CustomerClient {
+    CustomerDto getCustomerById(Long id);
 }
