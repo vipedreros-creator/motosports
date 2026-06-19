@@ -1,0 +1,6 @@
+CREATE TABLE users (
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    CONSTRAINT pk_users PRIMARY KEY (email)
+);

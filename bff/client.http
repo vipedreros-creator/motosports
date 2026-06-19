@@ -1,0 +1,106 @@
+@baseUrl = http://localhost:7779
+@token = exJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBtYWlsLmNsIiwiaWF0IjoxNzgxMzc2MTQ0LCJleHAiOjE3ODE0NjI1NDR9.OTZJEaPm4Vx-mCqHtEl1QDAq0VPzMMleqSHGerXhjNw
+
+### ==========================================
+### AUTENTICACIÓN (Público)
+### ==========================================
+
+### Login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "user1@mail.cl",
+  "password": "abcd.1234"
+}
+
+### Register
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "email": "nuevo_user2@mail.cl",
+  "password": "abcd.1234"
+}
+
+### ==========================================
+### PRODUCTOS (Protegido)
+### ==========================================
+
+### Listar productos
+GET {{baseUrl}}/products
+Authorization: Bearer {{token}}
+
+### Crear producto
+POST {{baseUrl}}/products
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Cuaderno",
+  "price": 3990
+}
+
+### Obtener producto por id
+GET {{baseUrl}}/products/1
+Authorization: Bearer {{token}}
+
+### Actualizar producto por id
+PUT {{baseUrl}}/products/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Cuaderno A4",
+  "price": 4290
+}
+
+### Eliminar producto por id
+DELETE {{baseUrl}}/products/1
+Authorization: Bearer {{token}}
+
+
+### ==========================================
+### BICICLETAS / BIKES (Protegido a través del BFF)
+### ==========================================
+
+### Listar todas las bicicletas
+GET {{baseUrl}}/api/bikes
+Authorization: Bearer {{token}}
+
+### Obtener una bicicleta por ID
+GET {{baseUrl}}/api/bikes/1
+Authorization: Bearer {{token}}
+
+### Crear una nueva bicicleta
+POST {{baseUrl}}/api/bikes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "marca": "Yamaha",
+  "modelo": "MT-03",
+  "patente": "AB1234",
+  "valor": 4500000,
+  "annio": 2023,
+  "color": "Negro",
+  "kilometraje": 5000,
+  "disponibilidad": true
+}
+
+### Actualizar una bicicleta por ID
+PUT {{baseUrl}}/api/bikes/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": 1,
+  "marca": "Yamaha",
+  "modelo": "MT-03",
+  "patente": "AB1234",
+  "valor": 4200000,
+  "annio": 2023,
+  "color": "Azul",
+  "kilometraje": 6200,
+  "disponibilidad": false
+}
