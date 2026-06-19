@@ -1,0 +1,58 @@
+services:
+
+  mysql_rent:
+    image: mysql:8.0
+    container_name: mysql_rent
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: rent_db
+      MYSQL_USER: rent_user
+      MYSQL_PASSWORD: rent_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_rent_data:/var/lib/mysql
+    networks:
+      - microservices_network
+
+  mysql_customer:
+    image: mysql:8.0
+    container_name: mysql_customer
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: customer_db
+      MYSQL_USER: customer_user
+      MYSQL_PASSWORD: customer_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_customer_data:/var/lib/mysql
+    networks:
+      - microservices_network
+
+  mysql_bike:
+    image: mysql:8.0
+    container_name: mysql_bike
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: bike_db
+      MYSQL_USER: bike_user
+      MYSQL_PASSWORD: bike_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3309:3306"
+    volumes:
+      - mysql_bike_data:/var/lib/mysql
+    networks:
+      - microservices_network
+
+volumes:
+  mysql_rent_data:
+  mysql_customer_data:
+  mysql_bike_data:
+
+networks:
+  microservices_network:
+    driver: bridge
