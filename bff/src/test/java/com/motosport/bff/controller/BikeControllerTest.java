@@ -17,7 +17,7 @@ import com.motosport.bff.dto.BikeDto;
 import com.motosport.bff.service.BikeService;
 
 @ExtendWith(MockitoExtension.class)
-class BikeControllerTest {
+public class BikeControllerTest {
 
     @Mock
     private BikeService bikeService;
@@ -69,3 +69,4 @@ class BikeControllerTest {
         verify(bikeService).deleteBike(4L);
     }
 }
+

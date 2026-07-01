@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.Map;
 
-class HealthControllerTest {
+public class HealthControllerTest {
 
     @Test
     void health_shouldReturnOkResponseEntity() {

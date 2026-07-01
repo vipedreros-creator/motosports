@@ -20,7 +20,7 @@ import com.motosport.bff.dto.BikeDto;
 import com.motosport.bff.dto.ResponseDto;
 
 @ExtendWith(MockitoExtension.class)
-class BikeServiceImplTest {
+public class BikeServiceImplTest {
 
     // Usamos RETURNS_DEEP_STUBS para que Mockito entienda el encadenamiento
     // .post().uri().retrieve().body()

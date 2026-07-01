@@ -12,7 +12,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
-class BikeDtoValidationTest {
+public class BikeDtoValidationTest {
 
     private Validator validator;
 

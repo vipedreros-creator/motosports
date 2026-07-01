@@ -37,4 +37,7 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+    reports {
+        html.required = true
+    }
 }

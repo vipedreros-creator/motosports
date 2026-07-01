@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-class BikeTextUtilsTest {
+public class BikeTextUtilsTest {
 
     @Test
     void normalize_shouldTrimAndLowerCase() {
