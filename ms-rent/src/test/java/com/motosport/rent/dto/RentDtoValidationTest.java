@@ -1,5 +1,6 @@
-package com.motosport.bff.dto;
+package com.motosport.rent.dto;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
-public class BikeDtoValidationTest {
+public class RentDtoValidationTest {
 
     private Validator validator;
 
@@ -23,8 +24,8 @@ public class BikeDtoValidationTest {
     }
 
     @Test
-    void validBikeDto_shouldHaveNoViolations() {
-        BikeDto dto = new BikeDto(1L, "Kawasaki", "Ninja 400", "ABC123", 4500000, 2022, "Verde", 12000, true);
+    void validRentDto_shouldHaveNoViolations() {
+        RentDto dto = new RentDto(1L, 1L, 1L, LocalDate.now(), LocalDate.now().plusDays(5), "Sin observaciones");
 
         var violations = validator.validate(dto);
 
@@ -32,8 +33,10 @@ public class BikeDtoValidationTest {
     }
 
     @Test
-    void invalidBikeDto_shouldReportViolations() {
-        BikeDto dto = new BikeDto(null, "", "", "AB", -100, 1800, "", -5, null);
+    void invalidRentDto_shouldReportViolations() {
+        String observacionMuyLarga = "a".repeat(300);
+        RentDto dto = new RentDto(null, null, null,
+                LocalDate.now().minusDays(1), null, observacionMuyLarga);
 
         var violations = validator.validate(dto);
         Set<String> fields = violations.stream()
@@ -41,13 +44,10 @@ public class BikeDtoValidationTest {
             .collect(Collectors.toSet());
 
         assertFalse(violations.isEmpty());
-        assertTrue(fields.contains("marca"));
-        assertTrue(fields.contains("modelo"));
-        assertTrue(fields.contains("patente"));
-        assertTrue(fields.contains("valor"));
-        assertTrue(fields.contains("annio"));
-        assertTrue(fields.contains("color"));
-        assertTrue(fields.contains("kilometraje"));
-        assertTrue(fields.contains("disponibilidad"));
+        assertTrue(fields.contains("bikeId"));
+        assertTrue(fields.contains("customerId"));
+        assertTrue(fields.contains("fechaInicio"));
+        assertTrue(fields.contains("fechaFin"));
+        assertTrue(fields.contains("observacion"));
     }
 }
