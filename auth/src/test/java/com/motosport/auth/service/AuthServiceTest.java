@@ -57,10 +57,10 @@ class AuthServiceTest {
 		AuthService authService = new AuthService(userRepository, passwordEncoder, jwtService);
 		when(userRepository.findByEmailAndActiveTrue("nadie@test.com")).thenReturn(Optional.empty());
 
+		LoginRequest request = new LoginRequest("nadie@test.com", "clave123");
 		ResponseStatusException result = assertThrows(
-			ResponseStatusException.class,
-			() -> authService.login(new LoginRequest("nadie@test.com", "clave123"))
-		);
+				ResponseStatusException.class,
+				() -> authService.login(request));
 
 		assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
 
@@ -74,10 +74,10 @@ class AuthServiceTest {
 		when(userRepository.findByEmailAndActiveTrue("juan@test.com")).thenReturn(Optional.of(user));
 		when(passwordEncoder.matches("claveMala", "hashClave")).thenReturn(false);
 
+		LoginRequest request = new LoginRequest("juan@test.com", "claveMala");
 		ResponseStatusException result = assertThrows(
-			ResponseStatusException.class,
-			() -> authService.login(new LoginRequest("juan@test.com", "claveMala"))
-		);
+				ResponseStatusException.class,
+				() -> authService.login(request));
 
 		assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
 
@@ -89,10 +89,10 @@ class AuthServiceTest {
 		AuthService authService = new AuthService(userRepository, passwordEncoder, jwtService);
 		when(userRepository.existsById("existente@test.com")).thenReturn(true);
 
+		RegisterRequest request = new RegisterRequest("existente@test.com", "clave123");
 		ResponseStatusException result = assertThrows(
-			ResponseStatusException.class,
-			() -> authService.register(new RegisterRequest("existente@test.com", "clave123"))
-		);
+				ResponseStatusException.class,
+				() -> authService.register(request));
 
 		assertEquals(HttpStatus.CONFLICT, result.getStatusCode());
 

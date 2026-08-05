@@ -2,7 +2,6 @@ package com.motosport.auth.config;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +9,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import static org.mockito.Mockito.mock;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -30,7 +30,7 @@ class SecurityConfigTest {
 	static class TestConfig {
 		@Bean
 		AuthService authService() {
-			return Mockito.mock(AuthService.class);
+			return mock(AuthService.class);
 		}
 	}
 
@@ -39,7 +39,7 @@ class SecurityConfigTest {
 		MvcResult result = mockMvc.perform(post("/login")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"email\":\"juan@test.com\",\"password\":\"clave123\"}"))
-			.andReturn();
+				.andReturn();
 
 		assertNotEquals(403, result.getResponse().getStatus());
 	}
@@ -49,7 +49,7 @@ class SecurityConfigTest {
 		MvcResult result = mockMvc.perform(post("/register")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"email\":\"nuevo@test.com\",\"password\":\"clave123\"}"))
-			.andReturn();
+				.andReturn();
 
 		assertNotEquals(403, result.getResponse().getStatus());
 	}
@@ -57,6 +57,6 @@ class SecurityConfigTest {
 	@Test
 	void anyOtherEndpoint_shouldReturnForbiddenWithoutAuthentication() throws Exception {
 		mockMvc.perform(get("/perfil"))
-			.andExpect(status().isForbidden());
+				.andExpect(status().isForbidden());
 	}
 }
